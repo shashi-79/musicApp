@@ -1,0 +1,33 @@
+import { NextResponse } from "next/server";
+import path from "path";
+import fs from "fs";
+
+export async function GET(req, { params }) {
+  const { musicId, data } = params;
+
+  try {
+    // Define the path to the manifest file
+    const manifestPath = path.join(process.cwd(), "uploads", "music", musicId, data);
+
+    // Check if the file exists
+    if (!fs.existsSync(manifestPath)) {
+      return NextResponse.json(
+        { message: "Manifest file not found" },
+        { status: 404 }
+      );
+    }
+
+    // Read and return the file
+    return new NextResponse(fs.createReadStream(manifestPath), {
+      headers: {
+        "Content-Type": "application/dash+xml", // Update based on file type
+      },
+    });
+  } catch (error) {
+    console.error("Error fetching manifest:", error);
+    return NextResponse.json(
+      { message: "Internal Server Error" },
+      { status: 500 }
+    );
+  }
+}

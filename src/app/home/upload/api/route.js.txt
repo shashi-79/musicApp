@@ -1,0 +1,77 @@
+import { NextResponse } from "next/server";
+import { v4 as uuidv4 } from "uuid";
+import Music from "@/models/Music";
+import { encryptAndGenerateManifest } from "@/utils/encryptor";
+import fs from "fs";
+import path from "path";
+import connectDB from '@/config/db';
+
+
+export const dynamic = "force-dynamic"; // Enable dynamic routing for file uploads
+
+export async function POST(req) {
+  try {
+    await connectDB();
+  
+    // Parse form data
+    const form = await req.formData();
+    const name = form.get("name");
+    const description = form.get("description");
+    const languages = form.get("languages");
+    const userId = req.headers.get("userid");
+    const musicFile = form.get("music");
+    const logoFile = form.get("logo");
+
+    if (!name || !description || !languages || !userId || !musicFile || !logoFile) {
+      return NextResponse.json(
+        { message: "All fields, including music and logo files, are required!" },
+        { status: 400 }
+      );
+    }
+
+    // Generate unique ID for the music
+    const musicId = uuidv4();
+
+    // Create directories for storing files
+    const musicDir = path.join(process.cwd(), "uploads", "music", musicId);
+
+   const logoDir = path.join(process.cwd(), "uploads", "logos");
+
+    if (!fs.existsSync(musicDir)) fs.mkdirSync(musicDir, { recursive: true });
+    if (!fs.existsSync(logoDir)) fs.mkdirSync(logoDir, { recursive: true });
+
+    // Save music file
+    const musicPath = path.join(musicDir, musicFile.name);
+    const musicBuffer = Buffer.from(await musicFile.arrayBuffer());
+    fs.writeFileSync(musicPath, musicBuffer);
+
+    // Encrypt and generate DASH manifest using your utility function
+    console.log('manifest creating')
+    const manifestPath = await encryptAndGenerateManifest(musicPath, musicDir, musicId);
+    console.log('manifest created')
+
+    // Save logo file
+    const logoPath = path.join(logoDir, `${musicId}.png`);
+    const logoBuffer = Buffer.from(await logoFile.arrayBuffer());
+    fs.writeFileSync(logoPath, logoBuffer);
+
+    // Remove original music file (if needed, since it's encrypted)
+    fs.unlinkSync(musicPath);
+
+    // Save metadata to the database
+    await Music.create({
+      musicId,
+      userId,
+      name,
+      description,
+      languages: languages.split(",").map((lang) => lang.trim()),
+      logoPath: `/home/audio/api/logo/${musicId}`,
+      manifestPath: `/home/audio/api/manifest/${musicId}`,
+    });
+
+    return NextResponse.json({ message: "Uploaded successfully!", musicId }, { status: 200 });
+  } catch (error) {
+    console.error("Error uploading files:", error);
+    return NextResponse.json({ message: "Server error" }, { status: 500 });
+  }
+}
