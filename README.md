@@ -16,7 +16,6 @@ This project is a Next.js application that integrates with MongoDB for data mana
 - View tracking for user engagement
 - Watch time tracking for audio content
 
-
 ## Technologies Used
 
 - **Next.js**: A React framework for server-side rendering and static site generation.
@@ -40,23 +39,19 @@ This project is a Next.js application that integrates with MongoDB for data mana
    npm install
    ```
 
-4. Create a `.env` file in the root directory and add your environment variables:
+4. Change `env` to `.env` file in the root directory and add your environment variables:
    - `MONGODB_URI`: Your MongoDB connection string.
-   - `JWT_SECRET`: Secret key for JWT.
-   - `NEXTAUTH_URL`: The URL of your application.
-
-
-2. Navigate to the project directory:
-   ```bash
-   cd musicApp
-   ```
-
-3. Install the dependencies:
-   ```bash
-   npm install
-   ```
-
-4. Create a `.env` file in the root directory and add your environment variables.
+   - `SMTP_EMAIL`: Your SMTP email for sending emails.
+   - `SMTP_APP_PASSWORD`: Your SMTP application password.
+   - `JWT_REFRESH_SECRET`: Secret key for refreshing JWT tokens.
+   - `JWT_ACCESS_TOKEN_EXPIRATION`: Access token expiration time (e.g., 15m).
+   - `JWT_ACCESS_TOKEN_SECRET`: Secret key for access tokens.
+   - `JWT_REFRESH_EXPIRATION`: Refresh token expiration time (e.g., 7d).
+   - `CAPTCHA_EXPIRATION_MINUTES`: CAPTCHA expiration time in minutes.
+   - `CAPTCHA_LENGTH`: Length of the CAPTCHA code.
+   - `APP_NAME`: Name of the application (e.g., "music").
+   - `SUPABASE_URL`: Your Supabase URL.
+   - `SUPABASE_KEY`: Your Supabase key.
 
 ## Usage
 
@@ -77,6 +72,7 @@ Then open your browser and navigate to `http://localhost:3000`.
 - **POST /api/audio**: Add new audio content.
   - **Request Body**: `{ "title": "Audio Title", "url": "audio-url" }`
   - **Response**: `{ "message": "Audio added successfully" }`
+
 
 
 ## Contributing
