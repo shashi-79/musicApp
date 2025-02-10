@@ -1,0 +1,18 @@
+# ===== MongoDB Configuration =====
+MONGODB_URI=
+# ===== Nodemailer Configuration =====
+SMTP_EMAIL=
+SMTP_APP_PASSWARD=
+# ===== JWT Configuration =====
+JWT_REFRESH_SECRET=7f89ad1cf4e3e2198176cf8b58ad87b2448dbf85c9380ed8e8dfebfd385c3e59
+JWT_ACCESS_TOKEN_EXPIRATION=15m         # Access token expiration (e.g., 15 minutes)
+JWT_ACCESS_TOKEN_SECRET=2c5dc6abb1f1ed6de690608346379834d9732d798cd3b551818f6cf073613b5fd47677b9c87be5bc35daf376d0ee3e10a60e0903bb16c81ba2ff593481ce666b4ebda1e875e75263b399dfeef87a4c9583cf8beabbe446e23e656cee951cf9f96b84117b559035373f138d4590a7aa61dc5a7b4e3430cabe1189043b2d7b4892
+JWT_REFRESH_EXPIRATION=7d   # Refresh token expiration (e.g., 7 days)
+# ===== CAPTCHA Configuration =====
+CAPTCHA_EXPIRATION_MINUTES=5  # CAPTCHA expiration time
+CAPTCHA_LENGTH=4              # Length of CAPTCHA code
+# ===== Other Configuration =====
+APP_NAME=music
+#=======SUPABASE========
+SUPABASE_URL=
+SUPABASE_KEY=
