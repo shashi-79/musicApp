@@ -4,6 +4,7 @@ import Image from "next/image";
 import "./globals.css";
 import Head from "next/head";
 
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
