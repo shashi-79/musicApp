@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react"; // Import useEffect
+import { useState } from "react"; // Import useEffect
 
 import Suggestion from "./home/suggestion/page";
 import Search from "./home/search/page";

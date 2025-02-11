@@ -78,7 +78,7 @@ export async function PUT(req, { params }) {
 
     // Function to upload image and store only the file path
     const uploadToSupabase = async (file, path) => {
-      const { data, error } = await supabase.storage
+      const { error } = await supabase.storage
         .from('music') // Correct storage bucket name
         .upload(path, file, { upsert: true });
 

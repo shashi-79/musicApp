@@ -6,7 +6,7 @@ import { createCanvas } from 'canvas'; // Uncomment this to generate the captcha
 // Function to generate captcha code
 const generateCaptchaCode = () =>  (Math.floor(1000 + Math.random() * 9000)).toString();
 export const dynamic = "force-dynamic";
-export async function GET(req) {
+export async function GET() {
   // Ensure database connection
   await connectDB();
   

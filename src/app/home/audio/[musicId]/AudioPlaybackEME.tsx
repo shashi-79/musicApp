@@ -6,7 +6,7 @@ import { FaPlay, FaPause, FaForward, FaBackward } from "react-icons/fa";
 import axios from "axios";
 import useWatchTime from "@/hooks/useWatchTime";
 
-export default function Playback({ manifestUrl, musicId }: { manifestUrl: string, musicId: string |string[]}) {
+export default function Playback({ manifestUrl, musicId }: { manifestUrl: string, musicId: string | string[] }) {
   
   const { Wstart, Wstop, onBufferingStart, onBufferingEnd } = useWatchTime({ musicId });
   
@@ -51,25 +51,27 @@ export default function Playback({ manifestUrl, musicId }: { manifestUrl: string
     // Attach event listeners
     audio.addEventListener("loadedmetadata", handleLoadedMetadata);
     audio.addEventListener("timeupdate", updateTime);
-  audio.addEventListener("ended", handleEnded); // Listen for playback end
+    audio.addEventListener("ended", handleEnded); // Listen for playback end
 
-  return () => {
-    // Cleanup Dash.js and event listeners
-    player.reset();
-    audio.removeEventListener("loadedmetadata", handleLoadedMetadata);
-    audio.removeEventListener("timeupdate", updateTime);
-    audio.removeEventListener("ended", handleEnded); // Remove the "ended" listener
-  };
-  }, [manifestUrl]);
-  const recordView = async (musicId:any) => {
-    if (!musicId ) {
-      console.error("Music ID are required.");
+    return () => {
+      // Cleanup Dash.js and event listeners
+      player.reset();
+      audio.removeEventListener("loadedmetadata", handleLoadedMetadata);
+      audio.removeEventListener("timeupdate", updateTime);
+      audio.removeEventListener("ended", handleEnded); // Remove the "ended" listener
+    };
+  }, [manifestUrl, musicId]); // Added musicId to the dependency array
+
+  const recordView = async (musicId: string | string[]) => { // Updated type to handle both string and string[]
+    const id = Array.isArray(musicId) ? musicId[0] : musicId; // Ensure id is a string
+    if (!id) {
+      console.error("Music ID is required.");
       return;
     }
-      const userId = localStorage.getItem("userId");
+    const userId = localStorage.getItem("userId");
 
     try {
-      const response = await axios.post(`/home/audio/api/views/${musicId}/${userId}`);
+      const response = await axios.post(`/home/audio/api/views/${id}/${userId}`);
       if (response.status === 200) {
         console.log(response.data.message);
       } else {
@@ -79,9 +81,11 @@ export default function Playback({ manifestUrl, musicId }: { manifestUrl: string
       console.error("Error recording view:", error);
     }
   };
-const handleEnded = ()=>{
-  setIsPlaying(false);
-};
+
+  const handleEnded = () => {
+    setIsPlaying(false);
+  };
+
   const togglePlay = () => {
     const audio = audioRef.current;
     if (!audio) return;

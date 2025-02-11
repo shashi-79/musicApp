@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import { FaPlusCircle, FaMinusCircle } from 'react-icons/fa';
 
 export default function Description({ data }:{data:any}) {
