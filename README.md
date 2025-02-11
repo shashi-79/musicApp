@@ -61,6 +61,82 @@ npm run dev
 ```
 Then open your browser and navigate to `http://localhost:3000`.
 
+## STRUCTURE
+
+musicApp/
+      ├───src/
+      │      ├───app
+      │      │   ├───auth
+      │      │   │   ├───api
+      │      │   │   │   ├───captcha
+      │      │   │   │   ├───deleteAccount
+      │      │   │   │   ├───login
+      │      │   │   │   ├───logout
+      │      │   │   │   ├───register
+      │      │   │   │   ├───token
+      │      │   │   │   └───verifyOtp
+      │      │   │   ├───deleteAccount
+      │      │   │   ├───login
+      │      │   │   ├───logout
+      │      │   │   ├───register
+      │      │   │   └───webAuth
+      │      │   │       ├───api
+      │      │   │       │   ├───login
+      │      │   │       │   │   ├───start
+      │      │   │       │   │   └───verify
+      │      │   │       │   └───register
+      │      │   │       │       ├───start
+      │      │   │       │       └───verify
+      │      │   │       ├───login
+      │      │   │       └───register
+      │      │   ├───home
+      │      │   │   ├───audio
+      │      │   │   │   ├───api
+      │      │   │   │   │   ├───comments
+      │      │   │   │   │   │   └───[musicId]
+      │      │   │   │   │   ├───dislike
+      │      │   │   │   │   │   └───[musicId]
+      │      │   │   │   │   │       └───[userId]
+      │      │   │   │   │   ├───like
+      │      │   │   │   │   │   └───[musicId]
+      │      │   │   │   │   │       └───[userId]
+      │      │   │   │   │   ├───logo
+      │      │   │   │   │   │   └───[musicId]
+      │      │   │   │   │   ├───manifest
+      │      │   │   │   │   │   └───[musicId]
+      │      │   │   │   │   │       └───[data]
+      │      │   │   │   │   ├───metadata
+      │      │   │   │   │   │   └───[musicId]
+      │      │   │   │   │   ├───views
+      │      │   │   │   │   │   └───[musicId]
+      │      │   │   │   │   │       └───[userId]
+      │      │   │   │   │   └───watchtime
+      │      │   │   │   │       └───[musicId]
+      │      │   │   │   │           └───[userId]
+      │      │   │   │   └───[musicId]
+      │      │   │   ├───profile
+      │      │   │   │   ├───api
+      │      │   │   │   │   └───profile
+      │      │   │   │   │       └───[userId]
+      │      │   │   │   └───edit
+      │      │   │   ├───search
+      │      │   │   │   └───api
+      │      │   │   ├───suggestion
+      │      │   │   │   └───api
+      │      │   │   └───upload
+      │      │   │       └───api
+      │      │   ├───medium
+      │      │   │   └───api
+      │      │   └───setting
+      │      ├───components
+      │      ├───config
+      │      ├───functions
+      │      ├───hooks
+      │      ├──models
+      │      └───utils
+      ├───public
+      └─── .env
+
 ## API Endpoints
 - **POST /api/auth/login**: Authenticate a user and return a challenge.
   - **Request Body**: `{ "username": "user", "password": "pass" }`

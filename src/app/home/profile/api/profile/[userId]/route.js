@@ -6,8 +6,6 @@ import connectDB from '@/config/db';
 // Supabase configuration
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
 
-export const dynamic = "force-dynamic"; // Enable dynamic routing
-
 export async function GET(req, { params }) {
   const { userId } = params;
 

@@ -12,6 +12,13 @@ const UserProfile = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    // Redirect if userId is not found in localStorage
+    if (!localStorage.getItem("userId")) {
+      window.location.href = "auth/";
+    }
+  }, []); // Empty dependency array ensures useEffect runs only once
+
+  useEffect(() => {
     const userId = localStorage.getItem("userId");
     const token = localStorage.getItem("accessToken");
 
