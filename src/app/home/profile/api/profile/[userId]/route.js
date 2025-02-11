@@ -6,8 +6,6 @@ import connectDB from '@/config/db';
 // Supabase configuration
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
 
-export const dynamic = "force-dynamic"; // Enable dynamic routing
-
 export async function GET(req, { params }) {
   const { userId } = params;
 
@@ -80,7 +78,7 @@ export async function PUT(req, { params }) {
 
     // Function to upload image and store only the file path
     const uploadToSupabase = async (file, path) => {
-      const { data, error } = await supabase.storage
+      const { error } = await supabase.storage
         .from('music') // Correct storage bucket name
         .upload(path, file, { upsert: true });
 

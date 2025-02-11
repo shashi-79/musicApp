@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
 const useWatchTime = ({ musicId }) => {
-  const [watchTime, setWatchTime] = useState(0); // Track local watch time
+  const [ setWatchTime] = useState(0); // Track local watch time
   const [isBuffering, setIsBuffering] = useState(false); // Track buffering state
   const isPaused = useRef(true); // Ref to track play/pause state
   const saveInterval = useRef(null); // Ref for the periodic timer

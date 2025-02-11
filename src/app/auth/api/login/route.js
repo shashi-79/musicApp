@@ -28,7 +28,7 @@ await connectDB();
   const refreshToken = generateRefreshToken(user.userId);
 
   // Store or update the refresh token in the database
-  const token = await RefreshToken.findOneAndUpdate(
+   await RefreshToken.findOneAndUpdate(
     { userId: user.userId }, // Query to match the user
     { userId: user.userId, token: refreshToken },
     {

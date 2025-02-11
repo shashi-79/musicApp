@@ -1,5 +1,6 @@
 'use client'
-import { FaGlobe, FaEye, FaThumbsUp, FaThumbsDown, FaCalendarAlt } from "react-icons/fa";
+
+import {  FaThumbsUp, FaThumbsDown, } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import axios from "axios";
 

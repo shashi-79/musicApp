@@ -1,4 +1,3 @@
-import Music from '@/models/Music'; // Adjust the import path as needed
 import Views from '@/models/Views'; // Adjust the import path as needed
 import connectToDatabase from '@/config/db'; // Ensure database connection
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react"; // Import useEffect
+import { useState } from "react"; // Import useEffect
 
 import Suggestion from "./home/suggestion/page";
 import Search from "./home/search/page";
@@ -14,13 +14,7 @@ type ActiveTab = "home" | "search" | "favorites" | "profile" | "upload";
 const Home: React.FC = () => {
   const [activeTab, setActiveTab] = useState<ActiveTab>("home");
 
-  useEffect(() => {
-    // Redirect if userId is not found in localStorage
-    if (!localStorage.getItem("userId")) {
-      window.location.href = "auth/";
-    }
-  }, []); // Empty dependency array ensures useEffect runs only once
-
+  
   const renderContent = () => {
     switch (activeTab) {
       case "home":

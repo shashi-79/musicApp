@@ -7,25 +7,27 @@ import CommentSection from "./CommentSection";
 import Description from "./Description";
 import Likes from "./Likes";
 import axios from "axios";
-import { FaGlobe, FaEye, FaThumbsUp, FaThumbsDown, FaCalendarAlt } from "react-icons/fa";
+import { FaGlobe, FaEye, FaCalendarAlt } from "react-icons/fa";
 
 const AudioPlayerPage = () => {
     const [audioMetadata, setAudioMetadata] = useState<any>(null);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-    const [liked, setLiked] = useState(false);
-    const [disliked, setDisliked] = useState(false);
+    
+    const { musicId }: { musicId: string } = useParams(); // Retrieve musicId from the URL
 
-    const { musicId } = useParams(); // Retrieve musicId from the URL
     const userId = localStorage.getItem("userId");
 
     useEffect(() => {
-        if (musicId) fetchAudioMetadata();
+        if (musicId) fetchAudioMetadata(); // Fetch audio metadata when musicId changes
+
 
     }, [musicId]);
 
-    const fetchAudioMetadata = async () => {
+    const fetchAudioMetadata = async (): Promise<void> => {
+
         try {
+            if (!musicId) return; // Exit early if musicId is not provided
             setIsLoading(true);
             setError(null); // Reset error state
             const response = await axios.get(`/home/audio/api/metadata/${musicId}`);
@@ -111,7 +113,8 @@ const AudioPlayerPage = () => {
                                 </div>
                             </div>
                             <div className="mt-6">
-                                <AudioPlaybackEME manifestUrl={`${audioMetadata.manifestPath}/manifest.mpd`} musicId={musicId}
+                                <AudioPlaybackEME manifestUrl={`${audioMetadata.manifestPath ? `${audioMetadata.manifestPath}/manifest.mpd` : ''}`} musicId={musicId}
+
                                 />
                             </div>
                             <h1 className="text-3xl font-bold mt-6 text-gray-800 capitalize">

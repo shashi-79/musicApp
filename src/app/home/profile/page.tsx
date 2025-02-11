@@ -7,9 +7,16 @@ import axios from "axios";
 
 const UserProfile = () => {
   const router = useRouter();
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<string | null |any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    // Redirect if userId is not found in localStorage
+    if (!localStorage.getItem("userId")) {
+      window.location.href = "auth/";
+    }
+  }, []); // Empty dependency array ensures useEffect runs only once
 
   useEffect(() => {
     const userId = localStorage.getItem("userId");
@@ -22,7 +29,7 @@ const UserProfile = () => {
     }
 
     fetchProfile(userId, token);
-  }, []);
+  }, []); // Added fetchProfile to the dependency array
 
   const refreshAuthToken = async (userId: string, refreshToken: string) => {
     try {

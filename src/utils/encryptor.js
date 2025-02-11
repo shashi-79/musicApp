@@ -12,7 +12,7 @@ const CHUNK_DURATION = 10; // Duration of each chunk in seconds
  * @param {string} musicId - Unique identifier for the music file.
  * @returns {Promise<string>} - Path to the generated manifest file.
  */
-export const encryptAndGenerateManifest = async (inputFilePath, outputDir, musicId) => {
+export const encryptAndGenerateManifest = async (inputFilePath, outputDir) => {
   return new Promise((resolve, reject) => {
     try {
       // Ensure output directory exists
@@ -31,7 +31,7 @@ export const encryptAndGenerateManifest = async (inputFilePath, outputDir, music
       -adaptation_sets "id=0,streams=a" "${path.join(outputDir, "manifest.mpd")}"`;
 
       // Execute the FFmpeg command
-      exec(ffmpegCmd, (error, stdout, stderr) => {
+      exec(ffmpegCmd, (error,/* stdout, stderr */) => {
         if (error) {
           console.error("Error running FFmpeg:", error);
           return reject(error);

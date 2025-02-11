@@ -1,5 +1,4 @@
 import dbConnect from "@/config/db";
-import { NextResponse } from "next/server";
 import Likes from "@/models/Likes"; // Import the Like model
 
 export async function POST(req, { params }) {

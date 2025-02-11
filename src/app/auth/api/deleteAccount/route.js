@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server';
-import jwt from 'jsonwebtoken';
 import User from '@/models/User'; // Adjust the import based on your project structure
 import RefreshToken from '@/models/RefreshToken';
 import dbConnect from '@/config/db'; // Ensure your database connection utility is included

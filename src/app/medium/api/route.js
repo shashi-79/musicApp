@@ -1,8 +1,8 @@
 import dbConnect from "@/config/db";
-import { NextResponse } from "next/server";
+//import { NextResponse } from "next/server";
 
 
-export async function POST(req) {
+export async function POST() {
   
 
   await dbConnect();

@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Image from "next/image";
 import "./globals.css";
-import Head from "next/head";
+//import Head from "next/head";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -49,7 +50,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <header className="fixed z-10 w-full top-0 bg-gray-800 text-white shadow-lg">
           {/* Use the next/image component for optimized loading */}
-          <Image src="/1.webp" alt="logo" width={50} height={50} />
+          <Image src="/android-chrome-512x512.png" alt="logo" width={50} height={50} />
           <div className=" absolute font-extrabold right-1.5 top-1.5">
             alpha
           </div>

@@ -44,7 +44,7 @@ export async function POST(req) {
     fs.writeFileSync(logoPath, Buffer.from(await logoFile.arrayBuffer()));
 
     // Encrypt music and generate manifest
-    const manifestPath = await encryptAndGenerateManifest(musicPath, musicDir, musicId);
+    const manifestPath = await encryptAndGenerateManifest(musicPath, musicDir);
 
     fs.unlinkSync(musicPath);
     // Upload files to Supabase Storage
