@@ -63,91 +63,98 @@ Then open your browser and navigate to `http://localhost:3000`.
 
 ## STRUCTURE
 
+```
 musicApp/
-      ├───src/
-      │      ├───app
-      │      │   ├───auth
-      │      │   │   ├───api
-      │      │   │   │   ├───captcha
-      │      │   │   │   ├───deleteAccount
-      │      │   │   │   ├───login
-      │      │   │   │   ├───logout
-      │      │   │   │   ├───register
-      │      │   │   │   ├───token
-      │      │   │   │   └───verifyOtp
-      │      │   │   ├───deleteAccount
-      │      │   │   ├───login
-      │      │   │   ├───logout
-      │      │   │   ├───register
-      │      │   │   └───webAuth
-      │      │   │       ├───api
-      │      │   │       │   ├───login
-      │      │   │       │   │   ├───start
-      │      │   │       │   │   └───verify
-      │      │   │       │   └───register
-      │      │   │       │       ├───start
-      │      │   │       │       └───verify
-      │      │   │       ├───login
-      │      │   │       └───register
-      │      │   ├───home
-      │      │   │   ├───audio
-      │      │   │   │   ├───api
-      │      │   │   │   │   ├───comments
-      │      │   │   │   │   │   └───[musicId]
-      │      │   │   │   │   ├───dislike
-      │      │   │   │   │   │   └───[musicId]
-      │      │   │   │   │   │       └───[userId]
-      │      │   │   │   │   ├───like
-      │      │   │   │   │   │   └───[musicId]
-      │      │   │   │   │   │       └───[userId]
-      │      │   │   │   │   ├───logo
-      │      │   │   │   │   │   └───[musicId]
-      │      │   │   │   │   ├───manifest
-      │      │   │   │   │   │   └───[musicId]
-      │      │   │   │   │   │       └───[data]
-      │      │   │   │   │   ├───metadata
-      │      │   │   │   │   │   └───[musicId]
-      │      │   │   │   │   ├───views
-      │      │   │   │   │   │   └───[musicId]
-      │      │   │   │   │   │       └───[userId]
-      │      │   │   │   │   └───watchtime
-      │      │   │   │   │       └───[musicId]
-      │      │   │   │   │           └───[userId]
-      │      │   │   │   └───[musicId]
-      │      │   │   ├───profile
-      │      │   │   │   ├───api
-      │      │   │   │   │   └───profile
-      │      │   │   │   │       └───[userId]
-      │      │   │   │   └───edit
-      │      │   │   ├───search
-      │      │   │   │   └───api
-      │      │   │   ├───suggestion
-      │      │   │   │   └───api
-      │      │   │   └───upload
-      │      │   │       └───api
-      │      │   ├───medium
-      │      │   │   └───api
-      │      │   └───setting
-      │      ├───components
-      │      ├───config
-      │      ├───functions
-      │      ├───hooks
-      │      ├──models
-      │      └───utils
-      ├───public
-      └─── .env
+├───src/
+│    ├───app
+│    │   ├───auth
+│    │   │   ├───api
+│    │   │   │    ├───captcha
+│    │   │   │    ├───deleteAccount
+│    │   │   │    ├───login
+│    │   │   │    ├───logout
+│    │   │   │    ├───register
+│    │   │   │    ├───token
+│    │   │   │    └───verifyOtp
+│    │   │   ├───deleteAccount
+│    │   │   ├───login
+│    │   │   ├───logout
+│    │   │   ├───register
+│    │   │   └───webAuth
+│    │   │       ├───api
+│    │   │       │    ├───login
+│    │   │       │    │   ├───start
+│    │   │       │    │   └───verify
+│    │   │       │    └───register
+│    │   │       │        ├───start
+│    │   │       │        └───verify
+│    │   │       ├───login
+│    │   │       └───register
+│    │   ├───home
+│    │   │   ├───audio
+│    │   │   │   ├───api
+│    │   │   │   │   ├───comments
+│    │   │   │   │   │   └───[musicId]
+│    │   │   │   │   ├───dislike
+│    │   │   │   │   │   └───[musicId]
+│    │   │   │   │   │       └───[userId]
+│    │   │   │   │   ├───like
+│    │   │   │   │   │   └───[musicId]
+│    │   │   │   │   │       └───[userId]
+│    │   │   │   │   ├───logo
+│    │   │   │   │   │   └───[musicId]
+│    │   │   │   │   ├───manifest
+│    │   │   │   │   │   └───[musicId]
+│    │   │   │   │   │       └───[data]
+│    │   │   │   │   ├───metadata
+│    │   │   │   │   │   └───[musicId]
+│    │   │   │   │   ├───views
+│    │   │   │   │   │   └───[musicId]
+│    │   │   │   │   │       └───[userId]
+│    │   │   │   │   └───watchtime
+│    │   │   │   │       └───[musicId]
+│    │   │   │   │           └───[userId]
+│    │   │   │   └───[musicId]
+│    │   │   ├───profile
+│    │   │   │   ├───api
+│    │   │   │   │   └───profile
+│    │   │   │   │       └───[userId]
+│    │   │   │   └───edit
+│    │   │   ├───search
+│    │   │   │   └───api
+│    │   │   ├───suggestion
+│    │   │   │   └───api
+│    │   │   └───upload
+│    │   │       └───api
+│    │   ├───medium
+│    │   │   └───api
+│    │   └───setting
+│    ├───components
+│    ├───config
+│    ├───functions
+│    ├───hooks
+│    ├──models
+│    └───utils
+├───public
+└─── .env
+```
 
-## API Endpoints
-- **POST /api/auth/login**: Authenticate a user and return a challenge.
-  - **Request Body**: `{ "username": "user", "password": "pass" }`
-  - **Response**: `{ "token": "jwt-token" }`
+# API Endpoints
 
-- **GET /api/audio**: Retrieve audio content.
-  - **Response**: `[ { "id": "audioId", "title": "Audio Title", "url": "audio-url" } ]`
+## Authentication Endpoints: /auth/
+1. **`GET /api/captcha`**: Generates a captcha for verification.
+2. **`DELETE /api/deleteAccount`**: Deletes a user account.
+3. **`POST /api/login`**: Authenticates a user and returns tokens.
+4. **`POST /api/logout`**: Logs out a user by deleting their refresh token.
+5. **`POST /api/register`**: Registers a new user and sends an OTP for verification.
+6. **`POST /api/token`**: Refreshes the access token.
 
-- **POST /api/audio**: Add new audio content.
-  - **Request Body**: `{ "title": "Audio Title", "url": "audio-url" }`
-  - **Response**: `{ "message": "Audio added successfully" }`
+## Audio Management Endpoints: /home/audio | /home/upload
+1. **`GET /api/comments/[musicId]`**: Fetches comments for a specific music track.
+2. **`POST /api/comments/[musicId]`**: Adds a new comment to a specific music track.
+3. **`GET /api/like/[musicId]`**: Fetches like and dislike metadata for a specific music track.
+4. **`POST /api/dislike/[musicId]/[userId]`**: Toggles the dislike status for a specific user on a music track.
+5. **`POST /api/upload`**: Uploads music and logo files, saves metadata, and returns the music ID.
 
 
 
