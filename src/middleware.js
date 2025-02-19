@@ -56,7 +56,7 @@ export async function middleware(req) {
         );
       default:
         return NextResponse.json(
-          { message: "Internal Server Error." },
+          { message: "Internal Server Error."+ error.name },
           { status: 500 }
         );
     }
