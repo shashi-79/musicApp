@@ -43,8 +43,8 @@ export async function middleware(req) {
     return NextResponse.next();
   } catch (err) {
     console.log("before switch    "+err+ " before switch end");
-    console.log("err name :  "+err.name)
-    switch (err.name) {
+    console.log("err name :  "+err.code)
+    switch (err.code) {
       case "JWTExpired":
         return NextResponse.json(
           { message: "Unauthorized. Token has expired." },
