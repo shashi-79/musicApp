@@ -48,7 +48,7 @@ export async function middleware(req) {
 
       case "ERR_JWT_EXPIRED":
           return NextResponse.json(
-            { message: "Unauthorized. Token has expired.", expiredAt: new Date(payload.exp * 1000).toLocaleString() },
+            { message: "Unauthorized. Token has expired."},
             { status: 401 }
           );
 
