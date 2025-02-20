@@ -25,14 +25,14 @@ export async function middleware(req) {
   }
 
   const token = authHeader.split(" ")[1];
-
+  
+  const secret = new TextEncoder().encode(process.env.JWT_ACCESS_TOKEN_SECRET);
   try {
-    const secret = new TextEncoder().encode(process.env.JWT_ACCESS_TOKEN_SECRET);
     const { payload } = await jwtVerify(token, secret);
 
     // Check if the userId matches the token
-    console.log('payload',payload);
-    console.log(userIdHeader)
+   // console.log('payload',payload);
+   // console.log(userIdHeader)
     if (userIdHeader !==( payload.userId.userId|| payload.userId)) {
       return NextResponse.json(
         { message: "Forbidden. User ID does not match the token information." },
@@ -55,7 +55,7 @@ export async function middleware(req) {
           { status: 401 }
         );
       default:
-        console.log("Error Name:"+err.name)
+        console.log("Error Name:"+err)
         return NextResponse.json(
           { message: "Internal Server Error." + err.name},
           { status: 500 }
