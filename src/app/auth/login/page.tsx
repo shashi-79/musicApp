@@ -95,7 +95,7 @@ const LoginPage = () => {
           <div>
             <label className="block text-sm font-medium text-gray-700">Captcha</label>
             {captchaImage ? (
-              <Image
+              <img
                 src={captchaImage}
                 alt="Captcha"
                 className="my-2 border border-gray-300 rounded-lg"
