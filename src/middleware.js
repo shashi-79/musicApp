@@ -31,8 +31,8 @@ export async function middleware(req) {
     const { payload } = await jwtVerify(token, secret);
 
     // Check if the userId matches the token
-   // console.log('payload',payload);
-   // console.log(userIdHeader)
+    console.log('payload',payload);
+    console.log(userIdHeader)
     if (userIdHeader !==( payload.userId.userId|| payload.userId)) {
       return NextResponse.json(
         { message: "Forbidden. User ID does not match the token information." },
@@ -45,18 +45,7 @@ export async function middleware(req) {
     console.log("before switch    "+err+ " before switch end");
     console.log("err name :  "+err.code)
     switch (err.code) {
-      case "JWTExpired":
-        return NextResponse.json(
-          { message: "Unauthorized. Token has expired." },
-          { status: 401 }
-        );
-        
-      case "JWTInvalid":
-        return NextResponse.json(
-          { message: "Unauthorized. Invalid token." },
-          { status: 401 }
-        );
-        
+
       case "ERR_JWT_EXPIRED":
           return NextResponse.json(
             { message: "Unauthorized. Token has expired.", expiredAt: new Date(payload.exp * 1000).toLocaleString() },
