@@ -42,30 +42,73 @@ export async function middleware(req) {
 
     return NextResponse.next();
   } catch (err) {
-    console.log(err)
+    console.log("before switch    "+err+ " before switch end");
+    console.log("err name :  "+err.name)
     switch (err.name) {
       case "JWTExpired":
         return NextResponse.json(
           { message: "Unauthorized. Token has expired." },
           { status: 401 }
         );
-        break;
+        
       case "JWTInvalid":
         return NextResponse.json(
           { message: "Unauthorized. Invalid token." },
           { status: 401 }
         );
-        break;
+        
       case "ERR_JWT_EXPIRED":
           return NextResponse.json(
             { message: "Unauthorized. Token has expired.", expiredAt: new Date(payload.exp * 1000).toLocaleString() },
             { status: 401 }
           );
-        break;
-      default:
-        console.log("Error Name:"+err)
+
+      case "ERR_JWT_INVALID":
         return NextResponse.json(
-          { message: "Internal Server Error." + err.name},
+          { message: "Unauthorized. Invalid token." },
+          { status: 401 }
+        );
+
+      case "ERR_JWS_SIGNATURE_VERIFICATION_FAILED":
+        return NextResponse.json(
+          { message: "Unauthorized. Token signature verification failed." },
+          { status: 401 }
+        );
+
+      case "ERR_JWT_MALFORMED":
+        return NextResponse.json(
+          { message: "Unauthorized. Malformed token." },
+          { status: 401 }
+        );
+
+      case "ERR_JWS_INVALID":
+        return NextResponse.json(
+          { message: "Unauthorized. Invalid JWT algorithm." },
+          { status: 401 }
+        );
+
+      case "ERR_JWT_CLAIM_INVALID":
+        return NextResponse.json(
+          { message: "Unauthorized. Missing or invalid claim in JWT." },
+          { status: 401 }
+        );
+
+      case "ERR_JWK_INVALID":
+        return NextResponse.json(
+          { message: "Internal Server Error. Invalid JWK key." },
+          { status: 500 }
+        );
+
+      case "ERR_JWS_VERIFICATION_FAILED":
+        return NextResponse.json(
+          { message: "Unauthorized. JWT verification failed." },
+          { status: 401 }
+        );
+
+      default:
+        console.log("default case");
+        return NextResponse.json(
+          { message: "Internal Server Error."},
           { status: 500 }
         );
     }
