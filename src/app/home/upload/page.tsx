@@ -86,7 +86,11 @@ const languageOptions = ISO6391.getAllNames().map(lang => ({
     
             const reader = new FileReader();
             reader.onload = () => console.log("File Loaded Successfully");
-            reader.onerror = () => console.log("Error loading file!");
+            reader.onerror = () => { 
+                setMusic(null);
+                alert("Error loading file! Please try again.");
+                console.log("Error loading file!")
+            };
     
             reader.readAsDataURL(file);
     
