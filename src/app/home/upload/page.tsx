@@ -77,6 +77,19 @@ const languageOptions = ISO6391.getAllNames().map(lang => ({
     const handleMusicChange = (e: ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (file) {
+            console.log("Selected Music File:", file);
+
+            if (file.size === 0) {
+                alert("Invalid file! The selected file is empty.  | it show zero byte file selected |  or your file not supported for some reason");
+                return;
+            }
+    
+            const reader = new FileReader();
+            reader.onload = () => console.log("File Loaded Successfully");
+            reader.onerror = () => console.log("Error loading file!");
+    
+            reader.readAsDataURL(file);
+    
             setMusic(file);
         }
     };
