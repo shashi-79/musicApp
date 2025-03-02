@@ -10,6 +10,7 @@ const UserProfile = () => {
   const [user, setUser] = useState<string | null |any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [userIds, setUserIds] = useState<any>("loading");
 
   useEffect(() => {
     // Redirect if userId is not found in localStorage
@@ -21,7 +22,7 @@ const UserProfile = () => {
   useEffect(() => {
     const userId = localStorage.getItem("userId");
     const token = localStorage.getItem("accessToken");
-
+    setUserIds(userId);
     if (!userId || !token) {
       setError("User not authenticated.");
       setLoading(false);
@@ -147,6 +148,13 @@ const UserProfile = () => {
               <p className="text-gray-700">{user.contact || "Not provided"}</p>
             </div>
 
+            <div className="text-left">
+            <div className="mb-4">
+              <label className="block text-gray-500 text-sm font-semibold">
+                userId : 
+              </label>
+              <p className="text-gray-700">{userIds || "LOADING"}</p>
+            </div>
             <div className="mb-4">
               <label className="block text-gray-500 text-sm font-semibold">
                 About
